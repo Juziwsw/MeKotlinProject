@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.anko:commons-base:0.10.7@aar">
+    <CLASSES>
+      <root url="file://$APPLICATION_HOME_DIR$/gradle/gradle-5.1.1/caches/transforms-2/files-2.1/e46d6ec778c00727e3db50b9363363a6/res" />
+      <root url="jar://$APPLICATION_HOME_DIR$/gradle/gradle-5.1.1/caches/transforms-2/files-2.1/e46d6ec778c00727e3db50b9363363a6/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$APPLICATION_HOME_DIR$/gradle/gradle-5.1.1/caches/modules-2/files-2.1/org.jetbrains.anko/commons-base/0.10.7/2c9976935bc3d75cee4795d8f3795414479ca91f/commons-base-0.10.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

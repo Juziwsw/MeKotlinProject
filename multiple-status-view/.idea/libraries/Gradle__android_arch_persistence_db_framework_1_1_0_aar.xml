@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: android.arch.persistence:db-framework:1.1.0@aar">
+    <CLASSES>
+      <root url="jar://$APPLICATION_HOME_DIR$/gradle/gradle-5.1.1/caches/transforms-2/files-2.1/6d28f724b92d6b6a29ad6ece98a56d49/jars/classes.jar!/" />
+      <root url="file://$APPLICATION_HOME_DIR$/gradle/gradle-5.1.1/caches/transforms-2/files-2.1/6d28f724b92d6b6a29ad6ece98a56d49/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$APPLICATION_HOME_DIR$/gradle/gradle-5.1.1/caches/modules-2/files-2.1/android.arch.persistence/db-framework/1.1.0/815f24fe584131da63f8961e3c8510c153e7a503/db-framework-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
