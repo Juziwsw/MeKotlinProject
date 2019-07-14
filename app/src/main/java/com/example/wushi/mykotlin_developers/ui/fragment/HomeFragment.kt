@@ -1,6 +1,7 @@
 package com.example.wushi.mykotlin_developers.ui.fragment
 
 import android.os.Bundle
+import com.example.wushi.mykotlin_developers.R
 import com.example.wushi.mykotlin_developers.base.BaseMvpFragment
 import com.example.wushi.mykotlin_developers.mvp.contract.HomeContract
 import com.example.wushi.mykotlin_developers.mvp.presenter.HomePresenter
@@ -23,9 +24,7 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
 
     override fun createPresenter(): HomeContract.Presenter = HomePresenter()
 
-    override fun attachLayoutRes(): Int {
-    }
-
+    override fun attachLayoutRes(): Int  = R.layout.fragment_home
     override fun lazyLoad() {
     }
 
