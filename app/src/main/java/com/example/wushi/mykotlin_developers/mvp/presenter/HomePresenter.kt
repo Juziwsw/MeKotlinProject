@@ -2,6 +2,7 @@ package com.example.wushi.mykotlin_developers.mvp.presenter
 
 import com.example.wushi.mykotlin_developers.ext.ss
 import com.example.wushi.mykotlin_developers.mvp.contract.HomeContract
+import com.example.wushi.mykotlin_developers.mvp.model.HomeModel
 import com.example.wushi.mykotlin_developers.mvp.model.bean.Article
 import com.example.wushi.mykotlin_developers.mvp.model.bean.ArticleResponseBody
 import com.example.wushi.mykotlin_developers.mvp.model.bean.HttpResult
@@ -14,6 +15,7 @@ import io.reactivex.functions.BiFunction
  *
  */
 class HomePresenter : CommonPresenter<HomeContract.Model, HomeContract.View>(), HomeContract.Presenter {
+    override fun createModel(): HomeContract.Model? = HomeModel()
     /**
      * 获取banner内容
      */
@@ -30,9 +32,9 @@ class HomePresenter : CommonPresenter<HomeContract.Model, HomeContract.View>(), 
      */
     override fun requestHomeData() {
         requestBanner()
-        val observable  = if (SettingUtil.getIsShowTopArticle()) {
-           mModel?.requestArticles(0)
-        }else{
+        val observable = if (SettingUtil.getIsShowTopArticle()) {
+            mModel?.requestArticles(0)
+        } else {
             Observable.zip(mModel?.requestTopArticles(), mModel?.requestArticles(0),
                 BiFunction<HttpResult<MutableList<Article>>, HttpResult<ArticleResponseBody>,
                         HttpResult<ArticleResponseBody>> { t1, t2 ->
@@ -44,13 +46,13 @@ class HomePresenter : CommonPresenter<HomeContract.Model, HomeContract.View>(), 
                     t2
                 })
         }
-        observable?.ss(mModel,mView){
+        observable?.ss(mModel, mView) {
             mView?.setArticles(it.data)
         }
     }
 
     override fun requestArticles(num: Int) {
-        mModel?.requestArticles(num)?.ss(mModel,mView){
+        mModel?.requestArticles(num)?.ss(mModel, mView) {
             mView?.setArticles(it.data)
         }
     }

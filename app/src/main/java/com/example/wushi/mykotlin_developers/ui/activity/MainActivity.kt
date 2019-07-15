@@ -1,19 +1,17 @@
 package com.example.wushi.mykotlin_developers.ui.activity
 
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.transition.Transition
 import com.example.wushi.mykotlin_developers.R
 import com.example.wushi.mykotlin_developers.base.BaseMvpActivity
 import com.example.wushi.mykotlin_developers.mvp.contract.MainContract
 import com.example.wushi.mykotlin_developers.mvp.presenter.MainPresenter
 import com.example.wushi.mykotlin_developers.ui.fragment.HomeFragment
+import com.example.wushi.mykotlin_developers.ui.fragment.KnowledgeTreeFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.container.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : BaseMvpActivity<MainContract.MainView, MainContract.MainPresenter>(), MainContract.MainView {
@@ -27,7 +25,7 @@ class MainActivity : BaseMvpActivity<MainContract.MainView, MainContract.MainPre
     private val FRAGMENT_WECHAT = 0x05
 
     private var mHomeFragment: HomeFragment? = null
-    private var mKnowledgeTreeFragment: HomeFragment? = null
+    private var mKnowledgeTreeFragment: KnowledgeTreeFragment? = null
     private var mNavigationFragment: HomeFragment? = null
     private var mProjectFragment: HomeFragment? = null
     private var mWeChatFragment: HomeFragment? = null
@@ -98,23 +96,28 @@ class MainActivity : BaseMvpActivity<MainContract.MainView, MainContract.MainPre
      * @param index
      */
     private fun showFragment(index: Int) {
-        var  transition = supportFragmentManager.beginTransaction()
+        var transition = supportFragmentManager.beginTransaction()
         hintFragment(transition)
         mIndex = index
-        when(index){
-            FRAGMENT_HOME ->{
+        when (index) {
+            FRAGMENT_HOME -> {
                 toolbar.title = getString(R.string.app_name)
-                if (mHomeFragment == null){
+                if (mHomeFragment == null) {
                     mHomeFragment = HomeFragment.getInstance(FRAGMENT_HOME)
                     transition.add(R.id.container, mHomeFragment!!, "home")
+                } else {
+                    transition.show(mHomeFragment as Fragment)
                 }
-                transition.show(mHomeFragment as Fragment)
             }
-            FRAGMENT_KNOWLEDGE ->{
+            FRAGMENT_KNOWLEDGE -> {
                 toolbar.title = getString(R.string.knowledge_system)
-                if (mKnowledgeTreeFragment == null){
-                    m
+                if (mKnowledgeTreeFragment == null) {
+                    mKnowledgeTreeFragment = KnowledgeTreeFragment()
+                    transition.add(R.id.container, mKnowledgeTreeFragment!!, "knowledgeTree")
+                } else {
+                    transition.show(mKnowledgeTreeFragment as Fragment)
                 }
+
             }
         }
         transition.commit()
@@ -124,8 +127,8 @@ class MainActivity : BaseMvpActivity<MainContract.MainView, MainContract.MainPre
     /**
      * 隐藏全部的Fragment
      */
-    private fun hintFragment(fragmentTransaction: FragmentTransaction){
-        mHomeFragment?.let {fragmentTransaction.hide(it)}
+    private fun hintFragment(fragmentTransaction: FragmentTransaction) {
+        mHomeFragment?.let { fragmentTransaction.hide(it) }
         mKnowledgeTreeFragment?.let { fragmentTransaction.hide(it) }
         mNavigationFragment?.let { fragmentTransaction.hide(it) }
         mProjectFragment?.let { fragmentTransaction.hide(it) }

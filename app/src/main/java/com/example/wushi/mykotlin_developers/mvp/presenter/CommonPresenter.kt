@@ -7,7 +7,7 @@ import com.example.wushi.mykotlin_developers.mvp.contract.CommonContract
  * @author wsw
  *
  */
-open class CommonPresenter<M : CommonContract.Model, V : CommonContract.View> : BasePresenter<M, V>(),
+abstract class CommonPresenter<M : CommonContract.Model, V : CommonContract.View> : BasePresenter<M, V>(),
     CommonContract.Presenter<V> {
 
     override fun addCollectArticle(id: Int) {

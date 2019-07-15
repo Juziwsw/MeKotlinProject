@@ -4,21 +4,27 @@ import com.example.wushi.mykotlin_developers.base.IModel
 import com.example.wushi.mykotlin_developers.base.IPresenter
 import com.example.wushi.mykotlin_developers.base.IView
 import com.example.wushi.mykotlin_developers.mvp.model.bean.HttpResult
-import com.example.wushi.mykotlin_developers.mvp.model.bean.KnowledgeTreeBody
+import com.example.wushi.mykotlin_developers.mvp.model.bean.WXChapterBean
 import io.reactivex.Observable
 
-interface KnowledgeTreeContract {
+/**
+ * @author wsw
+ *
+ */
+interface WeChatContract {
     interface View : IView {
+
         fun scrollToTop()
 
-        fun setKnowledgeTree(lists: List<KnowledgeTreeBody>)
+        fun showWXChapters(chapters: MutableList<WXChapterBean>)
+
     }
 
     interface Presenter : IPresenter<View> {
-        fun requestKnowledgeTree()
+        fun getWXChapters()
     }
 
     interface Model : IModel {
-        fun requestKnowledgeTree(): Observable<HttpResult<List<KnowledgeTreeBody>>>
+        fun getWXChapters(): Observable<HttpResult<MutableList<WXChapterBean>>>
     }
 }

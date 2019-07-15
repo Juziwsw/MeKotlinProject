@@ -18,10 +18,11 @@ abstract class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleOb
 
     private val isViewAttached: Boolean
         get() = mView != null
+
     /**
      * 创建 Model
      */
-    open fun createModel(): M? = null
+    abstract fun createModel(): M?
 
     /**
      * 是否使用 EventBus
@@ -40,6 +41,7 @@ abstract class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleOb
             EventBus.getDefault().register(this)
         }
     }
+
     open fun checkViewAttached() {
         if (!isViewAttached) throw MvpViewNotAttachedException()
     }
@@ -67,7 +69,8 @@ abstract class BasePresenter<M : IModel, V : IView> : IPresenter<V>, LifecycleOb
         owner.lifecycle.removeObserver(this)
     }
 
-    private class MvpViewNotAttachedException internal constructor() : RuntimeException("Please call IPresenter.attachView(IBaseView) before" + " requesting data to the IPresenter")
+    private class MvpViewNotAttachedException internal constructor() :
+        RuntimeException("Please call IPresenter.attachView(IBaseView) before" + " requesting data to the IPresenter")
 
 
 }

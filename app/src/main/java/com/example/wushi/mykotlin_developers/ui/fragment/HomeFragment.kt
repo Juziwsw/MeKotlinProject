@@ -14,9 +14,9 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
 
     companion object {
         fun getInstance(type: Int): HomeFragment {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putInt("type", type)
-            var homeFragment = HomeFragment()
+            val homeFragment = HomeFragment()
             homeFragment.arguments = bundle
             return homeFragment
         }

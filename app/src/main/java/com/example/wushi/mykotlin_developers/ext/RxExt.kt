@@ -33,7 +33,6 @@ fun <T : BaseBean> Observable<T>.ss(
                 override fun onComplete() {
                     view?.hideLoading()
                 }
-
                 override fun onSubscribe(d: Disposable) {
                     if (isShowLoading) view?.showLoading()
                     model?.addDisposable(d)
