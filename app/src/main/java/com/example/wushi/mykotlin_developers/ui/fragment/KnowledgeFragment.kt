@@ -3,6 +3,7 @@ package com.example.wushi.mykotlin_developers.ui.fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.wushi.mykotlin_developers.R
 import com.example.wushi.mykotlin_developers.adapter.KnowledgeAdapter
 import com.example.wushi.mykotlin_developers.base.BaseMvpFragment
@@ -62,6 +63,11 @@ class KnowledgeFragment : BaseMvpFragment<KnowledgeContract.View, KnowledgeContr
             adapter = knowledgeAdapter
             addItemDecoration(recyclerViewItemDecoration!!)
 
+        }
+        knowledgeAdapter.run {
+            onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+                showMsg(knowledgeAdapter.data[position].author)
+            }
         }
 
     }
