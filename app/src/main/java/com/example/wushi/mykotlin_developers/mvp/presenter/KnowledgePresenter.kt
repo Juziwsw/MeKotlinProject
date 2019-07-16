@@ -1,27 +1,21 @@
 package com.example.wushi.mykotlin_developers.mvp.presenter
 
-import com.example.wushi.mykotlin_developers.base.BasePresenter
+import com.example.wushi.mykotlin_developers.ext.ss
 import com.example.wushi.mykotlin_developers.mvp.contract.KnowledgeContract
+import com.example.wushi.mykotlin_developers.mvp.model.KnowledgeModel
 
 /**
  * @author wsw
  *
  */
-class KnowledgePresenter :BasePresenter<KnowledgeContract.Model,KnowledgeContract.View>(),KnowledgeContract.Presenter{
-    override fun createModel(): KnowledgeContract.Model? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class KnowledgePresenter :CommonPresenter<KnowledgeContract.Model,KnowledgeContract.View>(),KnowledgeContract.Presenter{
+    override fun createModel(): KnowledgeContract.Model?  = KnowledgeModel()
 
     override fun requestKnowledgeList(page: Int, cid: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mModel?.requestKnowledgeList(page,cid)?.ss(mModel,mView){
+            mView?.setKnowledgeList(it.data)
+        }
     }
 
-    override fun addCollectArticle(id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun cancelCollectArticle(id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
 }

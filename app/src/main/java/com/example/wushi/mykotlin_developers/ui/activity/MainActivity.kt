@@ -9,8 +9,7 @@ import com.example.wushi.mykotlin_developers.R
 import com.example.wushi.mykotlin_developers.base.BaseMvpActivity
 import com.example.wushi.mykotlin_developers.mvp.contract.MainContract
 import com.example.wushi.mykotlin_developers.mvp.presenter.MainPresenter
-import com.example.wushi.mykotlin_developers.ui.fragment.HomeFragment
-import com.example.wushi.mykotlin_developers.ui.fragment.KnowledgeTreeFragment
+import com.example.wushi.mykotlin_developers.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -26,9 +25,9 @@ class MainActivity : BaseMvpActivity<MainContract.MainView, MainContract.MainPre
 
     private var mHomeFragment: HomeFragment? = null
     private var mKnowledgeTreeFragment: KnowledgeTreeFragment? = null
-    private var mNavigationFragment: HomeFragment? = null
-    private var mProjectFragment: HomeFragment? = null
-    private var mWeChatFragment: HomeFragment? = null
+    private var mNavigationFragment: NavigationFragment? = null
+    private var mProjectFragment: ProjectFragment? = null
+    private var mWeChatFragment: WeChatFragment? = null
 
     private var mIndex = FRAGMENT_HOME
     override fun start() {
@@ -100,6 +99,7 @@ class MainActivity : BaseMvpActivity<MainContract.MainView, MainContract.MainPre
         hintFragment(transition)
         mIndex = index
         when (index) {
+            //首页
             FRAGMENT_HOME -> {
                 toolbar.title = getString(R.string.app_name)
                 if (mHomeFragment == null) {
@@ -109,16 +109,48 @@ class MainActivity : BaseMvpActivity<MainContract.MainView, MainContract.MainPre
                     transition.show(mHomeFragment as Fragment)
                 }
             }
+            //知识体系
             FRAGMENT_KNOWLEDGE -> {
                 toolbar.title = getString(R.string.knowledge_system)
                 if (mKnowledgeTreeFragment == null) {
-                    mKnowledgeTreeFragment = KnowledgeTreeFragment()
+                    mKnowledgeTreeFragment = KnowledgeTreeFragment.getInstance()
                     transition.add(R.id.container, mKnowledgeTreeFragment!!, "knowledgeTree")
                 } else {
                     transition.show(mKnowledgeTreeFragment as Fragment)
                 }
 
             }
+            //公共号
+            FRAGMENT_WECHAT -> {
+                toolbar.title = getString(R.string.wechat)
+                if (mWeChatFragment == null) {
+                    mWeChatFragment = WeChatFragment.getInstance()
+                    transition.add(R.id.container, mWeChatFragment!!, "WeChat")
+                } else {
+                    transition.show(mWeChatFragment as Fragment)
+                }
+            }
+            //项目
+            FRAGMENT_PROJECT -> {
+                toolbar.title = getString(R.string.project)
+                if (mProjectFragment == null) {
+                    mProjectFragment = ProjectFragment.getInstance()
+                    transition.add(R.id.container, mProjectFragment!!, "project")
+                } else {
+                    transition.show(mProjectFragment as Fragment)
+                }
+            }
+            //导航
+            FRAGMENT_NAVIGATION ->{
+                toolbar.title = getString(R.string.navigation)
+                if (mNavigationFragment == null) {
+                    mNavigationFragment = NavigationFragment.getInstance()
+                    transition.add(R.id.container, mNavigationFragment!!, "Navigation")
+                } else {
+                    transition.show(mNavigationFragment as Fragment)
+                }
+            }
+
         }
         transition.commit()
 
